@@ -17,11 +17,7 @@ export function errorHandler(
   return res.status(500).json({ error: "Internal server error" });
 }
 
-export function validateRequestBody(
-  req: Request,
-  res: Response,
-  next: NextFunction
-) {
+export function validateReq(req: Request, res: Response, next: NextFunction) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
