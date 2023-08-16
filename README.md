@@ -13,3 +13,7 @@
    b. Write: For this approach the focus is to optimize the system to be able to write a high volume of incoming data. To do this we can make our data schema more simplified by reducing the joins and indexes for example.
 
 ## Practice
+
+# Typeorm
+
+- at the project folder run the command $ npm run typeorm migration:run
