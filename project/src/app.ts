@@ -1,6 +1,7 @@
 import express from "express";
-import urlsRouter from "./routes/assets";
+import urlsRouter from "./routes/assets.route";
 import myDataSource from "./app-data-source";
+import { swaggerAppBootstrap } from "./swagger.bootstrap";
 
 // establish database connection
 myDataSource
@@ -14,6 +15,8 @@ myDataSource
 
 const app = express();
 app.use(express.json());
+
 app.use("/assets", urlsRouter);
+swaggerAppBootstrap(app);
 
 export default app;
