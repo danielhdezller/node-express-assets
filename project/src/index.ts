@@ -1,9 +1,12 @@
 "use strict";
 import cors from "cors";
 import app from "./app";
+import dotenv from "dotenv";
+import { parse } from "path";
 
-const PORT = 3001;
-const HOST = "0.0.0.0";
+dotenv.config();
+const PORT = process.env.APP_PORT ? +process.env.APP_PORT : 3000;
+const HOST = process.env.APP_HOST ? process.env.APP_HOST : "localhost";
 
 app.use(cors());
 
