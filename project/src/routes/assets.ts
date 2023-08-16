@@ -2,18 +2,22 @@ import express, { Request, Response } from "express";
 import dataSource from "../app-data-source";
 import { Asset } from "../entities/asset.entity";
 import { getManager } from "typeorm";
+import { AssetRepository } from "../repositories/asset.repository";
+import { createAsset, getAssetById } from "../services/asset.service";
 
 const router = express.Router();
 
-router.get("", (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     //TODO: validate the id as valid uuid.
-    //TODO: get the asset by id.
+    const { id } = req.params;
+    const assets = await getAssetById(id);
+    return res.json(assets);
   } catch (error) {
     console.error("Error encoding URL:", error);
     return res
-      .status(500)
-      .json({ error: "An error occurred while storing asset." });
+      .status(404)
+      .json({ error: `Not found asset with id: ${req.params.id}` });
   }
   return;
 });
@@ -21,18 +25,14 @@ router.get("", (req, res) => {
 router.post("", async (req: Request, res: Response) => {
   try {
     //TODO: validate the body.
-    //TODO: save the asset.
-
-    const asset = dataSource.getRepository(Asset).create(req.body);
-    const results = await dataSource.getRepository(Asset).save(asset);
-    return res.send(results);
+    const asset = await createAsset(req.body);
+    return res.send(asset);
   } catch (error) {
     console.error("Error encoding URL:", error);
     return res
       .status(500)
       .json({ error: "An error occurred while storing asset." });
   }
-  return;
 });
 
 export default router;
