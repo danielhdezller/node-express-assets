@@ -1,5 +1,4 @@
 import express from "express";
-import myDataSource from "./app-data-source";
 import { swaggerAppBootstrap } from "./swagger.bootstrap";
 import { errorHandler } from "./middleware/error-handler";
 import collectionsRouter from "./routes/collections.route";
