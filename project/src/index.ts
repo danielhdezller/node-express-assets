@@ -1,8 +1,18 @@
 "use strict";
 import cors from "cors";
+import myDataSource from "./app-data-source";
 import app from "./app";
 import dotenv from "dotenv";
-import { parse } from "path";
+
+// establish database connection
+myDataSource
+  .initialize()
+  .then(() => {
+    console.info("Data Source has been initialized.");
+  })
+  .catch((err) => {
+    console.error("Error during Data Source initialization:", err);
+  });
 
 dotenv.config();
 const PORT = process.env.APP_PORT ? +process.env.APP_PORT : 3000;

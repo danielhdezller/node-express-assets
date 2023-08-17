@@ -68,7 +68,7 @@ assetsRouter.post(
   ): Promise<Response<Asset | { error: string }>> => {
     try {
       const asset = await createAsset(req.body);
-      return res.send(asset);
+      return res.status(201).send(asset);
     } catch (error) {
       console.error("An error occurred while storing Asset:", error);
       return res
