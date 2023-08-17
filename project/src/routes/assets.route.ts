@@ -7,10 +7,11 @@ import {
 } from "../services/asset.service";
 import { validateReq } from "../middleware/error-handler";
 import { body, param } from "express-validator";
+import { AssetTypeEnum } from "../shared/app.enum";
 
-const router = express.Router();
+const assetsRouter = express.Router();
 
-router.get(
+assetsRouter.get(
   "/:id",
   [param("id").isUUID().withMessage("id must be an UUID")],
   validateReq,
@@ -28,7 +29,7 @@ router.get(
   }
 );
 
-router.delete(
+assetsRouter.delete(
   "/:id",
   [param("id").isUUID().withMessage("id must be an UUID")],
   validateReq,
@@ -44,11 +45,17 @@ router.delete(
   }
 );
 
-router.post(
+assetsRouter.post(
   "",
   [
     body("name").notEmpty().withMessage("name is required"),
-    body("type").notEmpty().withMessage("type is required"),
+    body("type")
+      .isIn(Object.values(AssetTypeEnum))
+      .withMessage(`Must be a valid enum: ${Object.values(AssetTypeEnum)}`),
+    body("pathToFile").isURL().withMessage("pathToFile must be a valid URL"),
+    body("collectionId")
+      .isUUID()
+      .withMessage("collectionId must be a valid UUID"),
   ],
   validateReq,
   async (req: Request, res: Response) => {
@@ -64,7 +71,7 @@ router.post(
   }
 );
 
-router.get("", async (_req: Request, res: Response) => {
+assetsRouter.get("", async (_req: Request, res: Response) => {
   try {
     const assets = await getAllAssets();
     return res.json(assets);
@@ -73,4 +80,4 @@ router.get("", async (_req: Request, res: Response) => {
   }
 });
 
-export default router;
+export default assetsRouter;
