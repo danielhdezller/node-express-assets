@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "init-schema": "ts-node initSchema.ts",
+    "test": "jest --detectOpenHandles",
+    "test-coverage": "jest --coverage",
     "dev": "ts-node-dev src/index.ts",
     "start": "node dist/index.js",
     "build": "tsc",
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.3",
     "@types/node": "^20.3.2",
     "@types/pg": "^8.10.2",
     "@types/validator": "^13.11.1",
