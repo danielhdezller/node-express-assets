@@ -8,7 +8,8 @@
     "build": "tsc",
     "test:unit": "jest -c jest.unit.config.js",
     "test:integration": "jest -c jest.integration.config.js",
-    "typeorm": "npm run build && npx typeorm -d dist/app-data-source.js"
+    "typeorm": "npm run build && npx typeorm -d dist/app-data-source.js",
+    "typeorm-migration-create": "typeorm migration:create"
   },
   "dependencies": {
     "body-parser": "^1.20.2",

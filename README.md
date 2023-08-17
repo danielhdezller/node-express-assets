@@ -4,6 +4,7 @@
 
 1. Model, Relations and System Representation
    ![Alt text](image.png)
+   ![Alt text](image-1.png)
 2. My solution will be based on an Event Driven Architecture with 3 microservices to ensure the scalability of the system making it more modular and performant.
 3. I rejected the Monolithic Schema, due to its less performant and efficient.
 4. Read and write optimized model:
