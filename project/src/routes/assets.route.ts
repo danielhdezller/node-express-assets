@@ -8,6 +8,7 @@ import {
 import { validateReq } from "../middleware/error-handler";
 import { body, param } from "express-validator";
 import { AssetTypeEnum } from "../shared/app.enum";
+import { Asset } from "../entities/asset.entity";
 
 const assetsRouter = express.Router();
 
@@ -15,7 +16,10 @@ assetsRouter.get(
   "/:id",
   [param("id").isUUID().withMessage("id must be an UUID")],
   validateReq,
-  async (req: Request, res: Response) => {
+  async (
+    req: Request,
+    res: Response
+  ): Promise<Response<Asset | { error: string }>> => {
     const id = req.params.id;
     try {
       const assets = await getAssetById(id);
@@ -58,7 +62,10 @@ assetsRouter.post(
       .withMessage("collectionId must be a valid UUID"),
   ],
   validateReq,
-  async (req: Request, res: Response) => {
+  async (
+    req: Request,
+    res: Response
+  ): Promise<Response<Asset | { error: string }>> => {
     try {
       const asset = await createAsset(req.body);
       return res.send(asset);
@@ -71,13 +78,19 @@ assetsRouter.post(
   }
 );
 
-assetsRouter.get("", async (_req: Request, res: Response) => {
-  try {
-    const assets = await getAllAssets();
-    return res.json(assets);
-  } catch (error) {
-    return res.status(500).json({ error });
+assetsRouter.get(
+  "",
+  async (
+    _req: Request,
+    res: Response
+  ): Promise<Response<Asset[] | { error: string }>> => {
+    try {
+      const assets = await getAllAssets();
+      return res.json(assets);
+    } catch (error) {
+      return res.status(500).json({ error });
+    }
   }
-});
+);
 
 export default assetsRouter;

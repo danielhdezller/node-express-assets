@@ -4,7 +4,7 @@
   "scripts": {
     "init-schema": "ts-node initSchema.ts",
     "dev": "ts-node-dev src/index.ts",
-    "start": "node dist/src/index.js",
+    "start": "node dist/index.js",
     "build": "tsc",
     "test:unit": "jest -c jest.unit.config.js",
     "test:integration": "jest -c jest.integration.config.js",
