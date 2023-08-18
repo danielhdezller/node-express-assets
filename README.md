@@ -30,7 +30,6 @@ $ git clone https://github.com/danielhdezller/node-express-assets.git
 - Then follow:
 
 ```bash
-# To run the test for the first time follow
 $ cd ./project
 $ npm i
 $ docker-compose up
@@ -39,6 +38,18 @@ $ npm run typeorm migration:run
 $ npm run dev
 # For production:
 $ npm run build && npm run start
+```
+
+## Steps to run the project:
+
+- if you haven't already: copy `.env.sample` to `.env` at the project folder level.
+
+```bash
+$ cd ./project
+$ npm i
+# To start de testing postgres DB
+$ docker-compose up
+$ npm run test
 ```
 
 ### Swagger documentation at:

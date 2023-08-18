@@ -18,4 +18,20 @@ const dataSource = new DataSource({
   synchronize: false,
 });
 
-export default dataSource;
+const testDataSource = new DataSource({
+  type: "postgres",
+  host: process.env.DB_HOST_TEST,
+  port: parseInt(process.env.DB_PORT_TEST || "5431"),
+  username: process.env.DB_USER_TEST,
+  password: process.env.DB_PASS_TEST,
+  database: process.env.DB_NAME_TEST,
+  entities: [Asset, Collection, Category],
+  migrations: ["dist/migrations/*.js"],
+  logging: false,
+  synchronize: true,
+});
+
+const exportDataSource =
+  process.env.APP_MODE === "test" ? testDataSource : dataSource;
+
+export default exportDataSource;

@@ -12,10 +12,10 @@ services:
       - ${DB_PORT:-5432}:5432
   db-test:
     image: postgres:13.6
-    env_file: .env.test
+    env_file: .env
     environment:
       - POSTGRES_USER=${DB_USER_TEST:-user}
       - POSTGRES_PASSWORD=${DB_PASS_TEST:-pass}
       - POSTGRES_DB=${DB_NAME_TEST:-boilerplate-db}
     ports:
-      - ${DB_PORT_TEST:-5431}:5431
+      - ${DB_PORT_TEST:-5431}:5432
