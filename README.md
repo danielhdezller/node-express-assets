@@ -27,6 +27,7 @@ $ git clone https://github.com/danielhdezller/node-express-assets.git
 ```
 
 - First copy `.env.sample` to `.env` at the project folder level.
+- Set the env variable APP_MODE as dev or prod.
 - Then follow:
 
 ```bash
@@ -43,6 +44,7 @@ $ npm run build && npm run start
 ## Steps to run the project:
 
 - if you haven't already: copy `.env.sample` to `.env` at the project folder level.
+- Set the env variable APP_MODE as test
 
 ```bash
 $ cd ./project
